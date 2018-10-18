@@ -1,0 +1,15 @@
+{
+  "extends": ["@oclif/tslint", "tslint-config-prettier"],
+  "rules": {
+    "eofline": true,
+    "indent": [true, "spaces", 2],
+    "no-console": false,
+    "no-magic-numbers": [true, -1, 0, 1],
+    "object-curly-spacing": [true, "always"],
+    "quotemark": [true, "single"],
+    "whitespace": [ true, "check-module" ]
+  },
+  "linterOptions": {
+    "exclude": ["**/node_modules/**", "**/dist/**"]
+  }
+}

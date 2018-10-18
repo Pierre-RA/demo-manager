@@ -1,0 +1,44 @@
+{
+  "name": "demo-manager",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build && node ./dist/server.js",
+    "build": "npm run clean && npm run lint && npm run swagger-gen && npm run routes-gen && tsc",
+    "build:prod": "npm run clean && npm run lint && npm run swagger-gen && npm run routes-gen && tsc --project tsconfig.prod.json",
+    "lint": "tslint --project tsconfig.json",
+    "clean": "rimraf dist",
+    "swagger-gen": "tsoa swagger",
+    "routes-gen": "tsoa routes",
+    "test": "jest",
+    "tsoa": "tsoa"
+  },
+  "author": "Pierre Repetto-Andipatin",
+  "license": "MIT",
+  "devDependencies": {
+    "@oclif/tslint": "^3.1.0",
+    "@types/expect": "^1.20.3",
+    "@types/express": "^4.16.0",
+    "@types/jest": "^23.3.3",
+    "@types/node": "^10.11.4",
+    "jest": "^23.6.0",
+    "mockingoose": "^2.10.1",
+    "rimraf": "^2.6.2",
+    "supertest": "^3.3.0",
+    "swagger-ui-dist": "^3.19.2",
+    "swagger-ui-express": "^4.0.1",
+    "ts-jest": "^23.10.3",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "typescript": "^3.1.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.3.1",
+    "morgan": "^1.9.1",
+    "tsoa": "^2.2.0"
+  }
+}
