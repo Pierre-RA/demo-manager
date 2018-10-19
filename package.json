@@ -11,7 +11,7 @@
     "clean": "rimraf dist",
     "swagger-gen": "tsoa swagger",
     "routes-gen": "tsoa routes",
-    "test": "jest --runInBand",
+    "test": "jest",
     "tsoa": "tsoa"
   },
   "author": "Pierre Repetto-Andipatin",

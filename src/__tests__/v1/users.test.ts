@@ -3,8 +3,9 @@ import * as mongoose from 'mongoose'
 import * as request from 'supertest'
 
 import app from '../../app'
-// import { User } from '../../models'
 import { BAD_REQUEST, SUCCESS_CODE } from '../../util/http-codes'
+
+process.env.NODE_ENV = 'test'
 
 describe('Test route /users', () => {
   let mongod
