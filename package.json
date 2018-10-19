@@ -11,7 +11,7 @@
     "clean": "rimraf dist",
     "swagger-gen": "tsoa swagger",
     "routes-gen": "tsoa routes",
-    "test": "jest",
+    "test": "jest --runInBand",
     "tsoa": "tsoa"
   },
   "author": "Pierre Repetto-Andipatin",
@@ -24,6 +24,7 @@
     "@types/node": "^10.11.4",
     "jest": "^23.6.0",
     "mockingoose": "^2.10.1",
+    "mongodb-memory-server": "^2.6.0",
     "rimraf": "^2.6.2",
     "supertest": "^3.3.0",
     "swagger-ui-dist": "^3.19.2",

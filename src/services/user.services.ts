@@ -29,7 +29,7 @@ export class UserService {
   }
 
   async updateUser(id: string, user: IUserUpdateRequest): Promise<IUser> {
-    const updatedUser = await User.findByIdAndUpdate(id, user, { new: true })
+    const updatedUser = await User.findOneAndUpdate({ _id: id }, user, { new: true })
 
     if (!updatedUser) {
       throw new ApiError(BAD_REQUEST, `No user found with id: ${id}`)
@@ -39,7 +39,7 @@ export class UserService {
   }
 
   async deleteUser(id: string) {
-    const user = await User.findByIdAndRemove({ _id: id })
+    const user = await User.findOneAndDelete({ _id: id })
 
     if (!user) {
       throw new ApiError(BAD_REQUEST, `No user found with id: ${id}`)

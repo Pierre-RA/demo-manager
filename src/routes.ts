@@ -1,8 +1,6 @@
 /* tslint:disable */
 import { Controller, ValidateParam, FieldErrors, ValidateError, TsoaRoute } from 'tsoa';
-import { AccountsController } from './controllers/accounts-controller';
 import { UsersController } from './controllers/users-controller';
-import { HomeController } from './controllers/home-controller';
 
 const models: TsoaRoute.Models = {
     "IUser": {
@@ -10,15 +8,6 @@ const models: TsoaRoute.Models = {
             "id": { "dataType": "string", "required": true },
             "email": { "dataType": "string", "required": true },
             "createdAt": { "dataType": "datetime", "required": true },
-        },
-    },
-    "ITestAccount": {
-        "properties": {
-            "id": { "dataType": "double", "required": true },
-            "address": { "dataType": "string" },
-            "name": { "dataType": "string", "required": true },
-            "users": { "dataType": "array", "array": { "ref": "IUser" } },
-            "fields": { "dataType": "array", "array": { "dataType": "string" } },
         },
     },
     "IUserError": {
@@ -46,42 +35,6 @@ const models: TsoaRoute.Models = {
 };
 
 export function RegisterRoutes(app: any) {
-    app.get('/v1/Accounts/Current',
-        function(request: any, response: any, next: any) {
-            const args = {
-            };
-
-            let validatedArgs: any[] = [];
-            try {
-                validatedArgs = getValidatedArgs(args, request);
-            } catch (err) {
-                return next(err);
-            }
-
-            const controller = new AccountsController();
-
-
-            const promise = controller.current.apply(controller, validatedArgs);
-            promiseHandler(controller, promise, response, next);
-        });
-    app.get('/v1/Accounts/Users',
-        function(request: any, response: any, next: any) {
-            const args = {
-            };
-
-            let validatedArgs: any[] = [];
-            try {
-                validatedArgs = getValidatedArgs(args, request);
-            } catch (err) {
-                return next(err);
-            }
-
-            const controller = new AccountsController();
-
-
-            const promise = controller.getUsers.apply(controller, validatedArgs);
-            promiseHandler(controller, promise, response, next);
-        });
     app.get('/v1/Users/:userId',
         function(request: any, response: any, next: any) {
             const args = {
@@ -175,24 +128,6 @@ export function RegisterRoutes(app: any) {
 
 
             const promise = controller.Update.apply(controller, validatedArgs);
-            promiseHandler(controller, promise, response, next);
-        });
-    app.get('/v1',
-        function(request: any, response: any, next: any) {
-            const args = {
-            };
-
-            let validatedArgs: any[] = [];
-            try {
-                validatedArgs = getValidatedArgs(args, request);
-            } catch (err) {
-                return next(err);
-            }
-
-            const controller = new HomeController();
-
-
-            const promise = controller.Home.apply(controller, validatedArgs);
             promiseHandler(controller, promise, response, next);
         });
 

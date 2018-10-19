@@ -1,19 +1,27 @@
+import MongoMemoryServer from 'mongodb-memory-server'
+import * as mongoose from 'mongoose'
 import * as request from 'supertest'
 
 import app from '../../app'
-import { User } from '../../models'
+// import { User } from '../../models'
 import { BAD_REQUEST, SUCCESS_CODE } from '../../util/http-codes'
 
 describe('Test route /users', () => {
-  beforeEach(() => {
-    User.deleteMany().exec()
+  let mongod
+
+  beforeAll(async () => {
+    mongod = new MongoMemoryServer()
+    const mongoURI = await mongod.getConnectionString()
+    mongoose.Promise = global.Promise
+    await mongoose.connect(mongoURI, { useNewUrlParser: true })
   })
 
-  afterEach(() => {
-    User.deleteMany().exec()
+  afterAll(async () => {
+    await mongoose.disconnect()
+    await mongod.stop()
   })
 
-  test('GET /users/12 should return status 400', async () => {
+  test('GET /users/1bc08237eecd0339ee092a17 should return status 400', async () => {
     const response = await request(app).get('/v1/users/1bc08237eecd0339ee092a17')
     expect(response.statusCode).toBe(BAD_REQUEST)
     expect(response.body).toEqual({

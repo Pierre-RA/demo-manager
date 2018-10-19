@@ -21,4 +21,5 @@ module.exports = {
     "!src/server.ts"
   ],
   "coverageReporters": ["json", "html"],
+  "bail": true,
 }
