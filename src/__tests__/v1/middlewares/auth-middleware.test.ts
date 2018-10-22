@@ -29,7 +29,7 @@ describe('Test middleware: auth', () => {
     expect(res.statusCode).toEqual(UNAUTHORIZED)
   })
 
-  test('Correct authorization should return 401', async () => {
+  test('Correct authorization should return 200', async () => {
     const DEFAULT_JWT_SECRET = 'simple-default-jwt-secret'
     const JWT_SECRET = process.env.JWT_SECRET || DEFAULT_JWT_SECRET
 
@@ -44,5 +44,8 @@ describe('Test middleware: auth', () => {
     await authHandler(req, res, next)
 
     expect(res.statusCode).toEqual(SUCCESS_CODE)
+    expect(req.user).toBeTruthy()
+    expect(req.user.id).toBeTruthy()
+    expect(req.user.id).toBe(1)
   })
 })
