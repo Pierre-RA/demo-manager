@@ -7,3 +7,4 @@ typings
 .yarn-error.log
 .npm-error.log
 .DS_Store
+src/routes.ts
