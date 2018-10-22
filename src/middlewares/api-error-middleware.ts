@@ -9,12 +9,14 @@ export const apiErrorHandler = (
   res: Response,
   _next: NextFunction
 ) => {
-  // istanbul ignore next
   const status = (err as ApiError).status || INTERNAL_SERVER_ERROR
   res.statusCode = status
 
   // istanbul ignore next
-  if (status >= INTERNAL_SERVER_ERROR) {
+  if (
+    process.env.NODE_ENV !== 'test' &&
+    status >= INTERNAL_SERVER_ERROR
+  ) {
     console.error(err.stack)
   }
 

@@ -11,7 +11,9 @@ const MONGODB_URI = process.env.MONGODB_URI || DEFAULT_MONGODB_URI
 
 // Add swagger documentation
 const swaggerDocument = require(`${__dirname}/swagger.json`)
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+if (process.env.NODE_ENV !== 'production') {
+  app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+}
 
 console.log('Connecting to database...')
 mongoose.Promise = global.Promise
